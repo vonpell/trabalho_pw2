@@ -16,7 +16,7 @@ import java.util.*;
 
 @ApplicationScoped
 public class MaterialRepository {
-    private static final String DB_FILE = "src/main/resources/materialDatabase.json";
+    private static final String DB_FILE = "src/main/resources/database.json";
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final Map<String, Material> materiais = new LinkedHashMap<>();
 

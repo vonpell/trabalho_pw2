@@ -1,62 +1,139 @@
-# material
+# API de Gerenciamento de Materiais
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+API REST desenvolvida com Quarkus para gerenciar materiais de construção.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+## Tecnologias
 
-## Running the application in dev mode
+- Quarkus 3.6.0
+- Java 21
+- REST com Jackson
+- Armazenamento em JSON
 
-You can run your application in dev mode that enables live coding using:
+## Estrutura do Projeto
 
-```shell script
-./mvnw quarkus:dev
+```
+src/main/java/com/exemplo/
+├── model/
+│   └── Material.java
+├── repository/
+│   └── MaterialRepository.java
+├── service/
+│   └── MaterialService.java
+└── resource/
+    └── MaterialResource.java
+
+src/main/resources/
+└── database.json (dados persistidos)
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+## Executar a Aplicação
 
-## Packaging and running the application
+### Modo de Desenvolvimento
+```bash
+./mvnw compile quarkus:dev
+```
 
-The application can be packaged using:
-
-```shell script
+### Empacotar e Executar
+```bash
 ./mvnw package
+java -jar target/quarkus-app/quarkus-run.jar
 ```
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+## Endpoints da API
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+Base URL: `http://localhost:8080/api/materiais`
 
-If you want to build an _über-jar_, execute the following command:
+### Criar Material
+```bash
+POST /api/materiais
+Content-Type: application/json
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
+{
+  "nome": "Cimento",
+  "unidadeMedida": "saco",
+  "precoUnitario": 35.90
+}
 ```
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
-./mvnw package -Dnative
+### Listar Todos os Materiais
+```bash
+GET /api/materiais
 ```
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
+### Buscar Material por ID
+```bash
+GET /api/materiais/{id}
 ```
 
-You can then execute your native executable with: `./target/material-1.0.0-SNAPSHOT-runner`
+### Atualizar Material
+```bash
+PUT /api/materiais/{id}
+Content-Type: application/json
 
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
+{
+  "nome": "Cimento Portland",
+  "unidadeMedida": "saco",
+  "precoUnitario": 38.50
+}
+```
 
-## Provided Code
+### Deletar Material
+```bash
+DELETE /api/materiais/{id}
+```
 
-### REST
+## Exemplos de Uso com cURL
 
-Easily start your REST Web Services
+### Criar um material
+```bash
+curl -X POST http://localhost:8080/api/materiais \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nome": "Areia",
+    "unidadeMedida": "m³",
+    "precoUnitario": 120.00
+  }'
+```
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+### Listar todos
+```bash
+curl http://localhost:8080/api/materiais
+```
+
+### Buscar por ID
+```bash
+curl http://localhost:8080/api/materiais/{id}
+```
+
+### Atualizar
+```bash
+curl -X PUT http://localhost:8080/api/materiais/{id} \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nome": "Areia Lavada",
+    "unidadeMedida": "m³",
+    "precoUnitario": 130.00
+  }'
+```
+
+### Deletar
+```bash
+curl -X DELETE http://localhost:8080/api/materiais/{id}
+```
+
+## Modelo de Dados
+
+**Material**
+- `id` (String): Identificador único gerado automaticamente
+- `nome` (String): Nome do material
+- `unidadeMedida` (String): Unidade de medida (ex: kg, m³, saco)
+- `precoUnitario` (BigDecimal): Preço unitário do material
+
+## Observações
+
+- Os dados são armazenados no arquivo `src/main/resources/database.json`
+- O arquivo é atualizado automaticamente a cada operação de criação, atualização ou exclusão
+- Os IDs são gerados automaticamente de forma incremental
+- A API retorna JSON em todos os endpoints
+- CORS está habilitado para desenvolvimento
+- Ao iniciar a aplicação, os dados do arquivo JSON são carregados automaticamente
