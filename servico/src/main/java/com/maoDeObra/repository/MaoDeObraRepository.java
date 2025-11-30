@@ -16,7 +16,7 @@ import java.util.*;
 
 @ApplicationScoped
 public class MaoDeObraRepository {
-    private static final String DB_FILE = "src/main/resources/maoDeObraDatabase.json";
+    private static final String DB_FILE = "src/main/resources/database.json";
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final Map<String, MaoDeObra> maoDeObra = new LinkedHashMap<>();
 
