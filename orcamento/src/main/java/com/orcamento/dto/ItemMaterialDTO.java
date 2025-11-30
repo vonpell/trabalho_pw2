@@ -1,6 +1,6 @@
 package com.orcamento.dto;
 
 public class ItemMaterialDTO {
-    public Long materialId;
+    public String materialId;
     public Integer quantidade;
 }

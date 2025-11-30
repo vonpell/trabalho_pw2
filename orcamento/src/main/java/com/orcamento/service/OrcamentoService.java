@@ -45,7 +45,7 @@ public class OrcamentoService {
                     material.nome,
                     item.quantidade,
                     material.precoUnitario,
-                    material.unidade
+                    material.unidadeMedida
                 );
                 orcamento.materiais.add(orcMaterial);
             }
@@ -60,7 +60,7 @@ public class OrcamentoService {
                     maoObra.nome,
                     item.quantidade,
                     maoObra.precoUnitario,
-                    maoObra.unidade
+                    maoObra.unidadeMedida
                 );
                 orcamento.maosObra.add(orcMaoObra);
             }
@@ -97,7 +97,7 @@ public class OrcamentoService {
                     material.nome,
                     item.quantidade,
                     material.precoUnitario,
-                    material.unidade
+                    material.unidadeMedida
                 );
                 orcamento.materiais.add(orcMaterial);
             }
@@ -112,7 +112,7 @@ public class OrcamentoService {
                     maoObra.nome,
                     item.quantidade,
                     maoObra.precoUnitario,
-                    maoObra.unidade
+                    maoObra.unidadeMedida
                 );
                 orcamento.maosObra.add(orcMaoObra);
             }

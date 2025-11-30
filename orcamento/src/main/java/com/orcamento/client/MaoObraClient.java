@@ -7,11 +7,11 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import com.orcamento.dto.MaoObraDTO;
 
-@Path("/mao-obra")
+@Path("/api/mao-de-obra")
 @RegisterRestClient(configKey = "maoobra-api")
 public interface MaoObraClient {
 
     @GET
     @Path("/{id}")
-    MaoObraDTO buscarPorId(@PathParam("id") Long id);
+    MaoObraDTO buscarPorId(@PathParam("id") String id);
 }
