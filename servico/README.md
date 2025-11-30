@@ -1,62 +1,156 @@
-# servico
+# API de Gerenciamento de Mão de Obra
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+API REST desenvolvida com Quarkus para gerenciar serviços de mão de obra na construção civil.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+## Tecnologias
 
-## Running the application in dev mode
+- Quarkus 3.6.0
+- Java 21
+- REST com Jackson
+- Armazenamento em JSON
 
-You can run your application in dev mode that enables live coding using:
+## Estrutura do Projeto
 
-```shell script
-./mvnw quarkus:dev
+```
+src/main/java/com/exemplo/
+├── model/
+│   └── MaoDeObra.java
+├── repository/
+│   └── MaoDeObraRepository.java
+├── service/
+│   └── MaoDeObraService.java
+└── resource/
+    └── MaoDeObraResource.java
+
+src/main/resources/
+└── database.json (dados persistidos)
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+## Executar a Aplicação
 
-## Packaging and running the application
+### Modo de Desenvolvimento
+```bash
+./mvnw compile quarkus:dev
+```
 
-The application can be packaged using:
+A aplicação roda na porta **8081** (diferente do serviço de materiais que usa 8080)
 
-```shell script
+### Empacotar e Executar
+```bash
 ./mvnw package
+java -jar target/quarkus-app/quarkus-run.jar
 ```
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+## Endpoints da API
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+Base URL: `http://localhost:8081/api/mao-de-obra`
 
-If you want to build an _über-jar_, execute the following command:
+### Criar Mão de Obra
+```bash
+POST /api/mao-de-obra
+Content-Type: application/json
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
+{
+  "nome": "Carpinteiro",
+  "unidadeMedida": "diária",
+  "precoUnitario": 260.00
+}
 ```
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
-./mvnw package -Dnative
+### Listar Todos
+```bash
+GET /api/mao-de-obra
 ```
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
+### Buscar por ID
+```bash
+GET /api/mao-de-obra/{id}
 ```
 
-You can then execute your native executable with: `./target/servico-1.0.0-SNAPSHOT-runner`
+### Atualizar
+```bash
+PUT /api/mao-de-obra/{id}
+Content-Type: application/json
 
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
+{
+  "nome": "Pedreiro Especializado",
+  "unidadeMedida": "diária",
+  "precoUnitario": 300.00
+}
+```
 
-## Provided Code
+### Deletar
+```bash
+DELETE /api/mao-de-obra/{id}
+```
 
-### REST
+## Exemplos de Uso com cURL
 
-Easily start your REST Web Services
+### Criar um item
+```bash
+curl -X POST http://localhost:8081/api/mao-de-obra \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nome": "Gesseiro",
+    "unidadeMedida": "diária",
+    "precoUnitario": 220.00
+  }'
+```
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+### Listar todos
+```bash
+curl http://localhost:8081/api/mao-de-obra
+```
+
+### Buscar por ID
+```bash
+curl http://localhost:8081/api/mao-de-obra/1
+```
+
+### Atualizar
+```bash
+curl -X PUT http://localhost:8081/api/mao-de-obra/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nome": "Pedreiro Master",
+    "unidadeMedida": "diária",
+    "precoUnitario": 280.00
+  }'
+```
+
+### Deletar
+```bash
+curl -X DELETE http://localhost:8081/api/mao-de-obra/5
+```
+
+## Modelo de Dados
+
+**MaoDeObra**
+- `id` (String): Identificador único gerado automaticamente
+- `nome` (String): Nome do profissional/serviço
+- `unidadeMedida` (String): Unidade de medida (ex: diária, hora, m²)
+- `precoUnitario` (BigDecimal): Preço unitário do serviço
+
+## Dados Mockados Iniciais
+
+O arquivo `database.json` vem com 5 exemplos:
+1. Pedreiro - R$ 250,00/diária
+2. Pintor - R$ 200,00/diária
+3. Eletricista - R$ 280,00/diária
+4. Encanador/Hidráulico - R$ 270,00/diária
+5. Servente - R$ 150,00/diária
+
+## Observações
+
+- Os dados são armazenados no arquivo `src/main/resources/database.json`
+- O arquivo é atualizado automaticamente a cada operação CRUD
+- Os IDs são gerados automaticamente de forma incremental
+- A aplicação roda na porta **8081** para não conflitar com outros serviços
+- CORS está habilitado para desenvolvimento
+- Ao iniciar, os dados do JSON são carregados automaticamente
+
+## Integração com Outros Microserviços
+
+Este serviço pode ser usado em conjunto com:
+- **Materiais API** (porta 8080) - gerenciamento de materiais
+- Futuros serviços de orçamentos, projetos, etc.
