@@ -1,0 +1,418 @@
+{
+  "info": {
+    "name": "trabalho_pw2_apis",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "materiais",
+      "item": [
+        {
+          "name": "create-material",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/api/materiais",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "api",
+                "materiais"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Cimento\",\n  \"unidadeMedida\": \"saco\",\n  \"precoUnitario\": 35.90\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "list-materials",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/api/materiais",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "api",
+                "materiais"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "get-material-id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/api/materiais/5",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "api",
+                "materiais",
+                "5"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "update-material",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/api/materiais/6",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "api",
+                "materiais",
+                "6"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Cimento Portland\",\n  \"unidadeMedida\": \"saco\",\n  \"precoUnitario\": 38.50\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "delete-material",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/api/materiais/6",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "api",
+                "materiais",
+                "6"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "orcamento",
+      "item": [
+        {
+          "name": "create-orçamento",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8082/orcamentos",
+              "protocol": "http",
+              "host": [
+                "localhost:8082"
+              ],
+              "path": [
+                "orcamentos"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"descricao\": \"Construção de Muro - 10m x 2m\",\n  \"materiais\": [\n    {\n      \"materialId\": 1,\n      \"quantidade\": 15\n    },\n    {\n      \"materialId\": 2,\n      \"quantidade\": 2\n    },\n    {\n      \"materialId\": 4,\n      \"quantidade\": 5\n    },\n    {\n      \"materialId\": 5,\n      \"quantidade\": 800\n    }\n  ],\n  \"maosObra\": [\n    {\n      \"maoObraId\": 1,\n      \"quantidade\": 5\n    },\n    {\n      \"maoObraId\": 5,\n      \"quantidade\": 5\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "list-orçamento",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8082/orcamentos",
+              "protocol": "http",
+              "host": [
+                "localhost:8082"
+              ],
+              "path": [
+                "orcamentos"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "update-orçamento",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8082/orcamentos/1",
+              "protocol": "http",
+              "host": [
+                "localhost:8082"
+              ],
+              "path": [
+                "orcamentos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"descricao\": \"Construção de Muro - 10m x 2m (Revisado)\",\n  \"materiais\": [\n    {\n      \"materialId\": 1,\n      \"quantidade\": 20\n    },\n    {\n      \"materialId\": 2,\n      \"quantidade\": 3\n    },\n    {\n      \"materialId\": 4,\n      \"quantidade\": 8\n    },\n    {\n      \"materialId\": 5,\n      \"quantidade\": 1000\n    }\n  ],\n  \"maosObra\": [\n    {\n      \"maoObraId\": 1,\n      \"quantidade\": 7\n    },\n    {\n      \"maoObraId\": 5,\n      \"quantidade\": 7\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "delete-orçamento",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8082/orcamentos/1",
+              "protocol": "http",
+              "host": [
+                "localhost:8082"
+              ],
+              "path": [
+                "orcamentos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "mao-de-obra",
+      "item": [
+        {
+          "name": "update-mao-de-obra",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8081/api/mao-de-obra/6",
+              "protocol": "http",
+              "host": [
+                "localhost:8081"
+              ],
+              "path": [
+                "api",
+                "mao-de-obra",
+                "6"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Carpinteiro\",\n  \"unidadeMedida\": \"diária\",\n  \"precoUnitario\": 260.00\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "create-mao-de-obra",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8081/api/mao-de-obra",
+              "protocol": "http",
+              "host": [
+                "localhost:8081"
+              ],
+              "path": [
+                "api",
+                "mao-de-obra"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Carpinteiro\",\n  \"unidadeMedida\": \"diária\",\n  \"precoUnitario\": 260.00\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "get-mao-de-obra-id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8081/api/mao-de-obra/5",
+              "protocol": "http",
+              "host": [
+                "localhost:8081"
+              ],
+              "path": [
+                "api",
+                "mao-de-obra",
+                "5"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "delete-mao-de-obra",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8081/api/mao-de-obra/6",
+              "protocol": "http",
+              "host": [
+                "localhost:8081"
+              ],
+              "path": [
+                "api",
+                "mao-de-obra",
+                "6"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "list-mao-de-obra",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8081/api/mao-de-obra",
+              "protocol": "http",
+              "host": [
+                "localhost:8081"
+              ],
+              "path": [
+                "api",
+                "mao-de-obra"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": []
+}
