@@ -1,4 +1,4 @@
-package com.orcamento.client;
+package com.orcamento.dto;
 
 import java.math.BigDecimal;
 

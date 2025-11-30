@@ -1,12 +1,12 @@
 package com.orcamento.service;
 
 import com.orcamento.client.MaterialClient;
-import com.orcamento.client.MaterialDTO;
 import com.orcamento.dto.ItemMaoObraDTO;
 import com.orcamento.dto.ItemMaterialDTO;
+import com.orcamento.dto.MaoObraDTO;
+import com.orcamento.dto.MaterialDTO;
 import com.orcamento.dto.OrcamentoDTO;
 import com.orcamento.client.MaoObraClient;
-import com.orcamento.client.MaoObraDTO;
 import com.orcamento.model.Orcamento;
 import com.orcamento.model.OrcamentoMaterial;
 import com.orcamento.model.OrcamentoMaoObra;
